@@ -37,69 +37,71 @@
   </script>
   <style>
     /* =====================================================================
-       🖼️ FOTOS DE FONDO REALES (3 universos) — ya incrustadas
-       Cada capa pinta TU foto arriba y un gradiente de respaldo detrás
-       (por si algún día el link falla). El crossfade lo hace solo. ✨
+       🖼️ FOTOS DE FONDO (3 universos) — centradas y completas (contain)
+       La foto va centrada SIN zoom; el gradiente del tema rellena los bordes
+       como un marco. Overlay = viñeta suave + tinte de color (no opaco). ✨
        ===================================================================== */
     [data-theme="singularity"]{
-      /* 🌀 SINGULARIDAD — galaxia / agujero negro rainbow */
+      /* 🌀 SINGULARIDAD — galaxia rainbow */
       --theme-primary:#ff2bd6; --theme-secondary:#2b6bff; --theme-accent:#39ff88;
-      --theme-glow:rgba(70,130,255,0.5);
-      --theme-ring1:rgba(255,43,214,0.55); --theme-ring2:rgba(43,107,255,0.5); --theme-ring3:rgba(57,255,136,0.35);
-      --theme-overlay:linear-gradient(rgba(0,0,8,0.30), rgba(0,0,8,0.58));
-      --spin-dur:18s; --neb-op:0.55; --bg-filter:none; --flash:rgba(120,160,255,0.5);
+      --theme-glow:rgba(70,130,255,0.55);
+      --theme-ring1:rgba(255,43,214,0.6); --theme-ring2:rgba(43,107,255,0.55); --theme-ring3:rgba(57,255,136,0.4);
+      --theme-overlay:radial-gradient(ellipse 130% 100% at 50% 42%, rgba(10,20,60,0) 35%, rgba(0,0,12,.42) 100%), linear-gradient(135deg, rgba(43,107,255,.16), rgba(255,43,214,.14));
+      --spin-dur:18s; --neb-op:0.6; --bg-filter:saturate(1.15) contrast(1.05); --flash:rgba(120,160,255,0.5);
     }
     [data-theme="thirdeye"]{
       /* 💀 TERCER OJO — calavera psicodélica */
-      --theme-primary:#e0356b; --theme-secondary:#14b8a6; --theme-accent:#d4a23a;
-      --theme-glow:rgba(224,53,107,0.45);
-      --theme-ring1:rgba(224,53,107,0.55); --theme-ring2:rgba(20,184,166,0.5); --theme-ring3:rgba(212,162,58,0.4);
-      --theme-overlay:linear-gradient(rgba(20,4,12,0.62), rgba(8,20,18,0.74));
-      --spin-dur:26s; --neb-op:0.40; --bg-filter:saturate(1.18) contrast(1.06); --flash:rgba(224,53,107,0.5);
+      --theme-primary:#ff1f6b; --theme-secondary:#00e6c8; --theme-accent:#ffcf3a;
+      --theme-glow:rgba(255,31,107,0.5);
+      --theme-ring1:rgba(255,31,107,0.6); --theme-ring2:rgba(0,230,200,0.55); --theme-ring3:rgba(255,207,58,0.45);
+      --theme-overlay:radial-gradient(ellipse 130% 100% at 50% 42%, rgba(40,5,20,0) 35%, rgba(10,2,8,.48) 100%), linear-gradient(135deg, rgba(255,31,107,.16), rgba(0,230,200,.14));
+      --spin-dur:26s; --neb-op:0.45; --bg-filter:saturate(1.25) contrast(1.08); --flash:rgba(255,31,107,0.5);
     }
     [data-theme="codex"]{
-      /* ⚙️ CÓDICE AUTÓMATA — robot steampunk en pergamino */
-      --theme-primary:#c9a06a; --theme-secondary:#6b4f2a; --theme-accent:#38bdf8;
-      --theme-glow:rgba(201,160,106,0.45);
-      --theme-ring1:rgba(201,160,106,0.55); --theme-ring2:rgba(138,109,59,0.5); --theme-ring3:rgba(56,189,248,0.4);
-      --theme-overlay:linear-gradient(rgba(18,11,4,0.62), rgba(8,5,2,0.76));
-      --spin-dur:40s; --neb-op:0.30; --bg-filter:sepia(0.25) contrast(1.05) brightness(0.92); --flash:rgba(201,160,106,0.5);
+      /* ⚙️ CÓDICE AUTÓMATA — robot steampunk */
+      --theme-primary:#e8b15c; --theme-secondary:#9a6326; --theme-accent:#2fd0ff;
+      --theme-glow:rgba(232,177,92,0.5);
+      --theme-ring1:rgba(232,177,92,0.6); --theme-ring2:rgba(154,99,38,0.55); --theme-ring3:rgba(47,208,255,0.45);
+      --theme-overlay:radial-gradient(ellipse 130% 100% at 50% 42%, rgba(30,18,6,0) 35%, rgba(8,4,1,.5) 100%), linear-gradient(135deg, rgba(232,177,92,.18), rgba(47,208,255,.12));
+      --spin-dur:40s; --neb-op:0.35; --bg-filter:sepia(0.2) contrast(1.08) saturate(1.1) brightness(0.95); --flash:rgba(232,177,92,0.5);
     }
 
     * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
     html, body { height: 100%; margin: 0; padding: 0; overflow: hidden; }
     body { background: #000; color: #fff; touch-action: manipulation; position: relative; overflow: hidden; }
 
-    /* === CAPAS DE FOTO (crossfade entre temas) === */
+    /* === CAPAS DE FOTO: contain (centrada y completa) + ken-burns sutil === */
     .bg-stack { position: fixed; inset: 0; z-index: -4; }
-    .bg-img { position: absolute; inset: 0; background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 0; transition: opacity 1s ease, filter 1s ease; }
+    .bg-img { position: absolute; inset: 0; background-repeat: no-repeat; background-position: center, center; background-size: contain, cover; opacity: 0; transition: opacity 1s ease, filter 1s ease; animation: kenburns 32s ease-in-out infinite; }
+    @keyframes kenburns { 0%{transform:scale(1.02) translate(0,0)} 50%{transform:scale(1.07) translate(-1%,-1%)} 100%{transform:scale(1.02) translate(0,0)} }
     .bg-singularity { filter: var(--bg-filter, none); background-image:
       url('https://i.ibb.co/ZR5D2Q0s/1784937263.png'),
-      radial-gradient(circle at 50% 47%, rgba(43,107,255,0.30), transparent 40%),
-      radial-gradient(ellipse 60% 22% at 50% 50%, rgba(255,43,214,0.5), rgba(57,255,136,0.25) 40%, transparent 70%),
-      radial-gradient(circle at 50% 47%, #000 11%, #06001a 40%, #000 100%); }
+      radial-gradient(circle at 50% 47%, rgba(43,107,255,0.35), transparent 45%),
+      radial-gradient(ellipse 70% 30% at 50% 50%, rgba(255,43,214,0.45), rgba(57,255,136,0.2) 45%, transparent 75%),
+      radial-gradient(circle at 50% 47%, #000 11%, #06001a 45%, #000 100%); }
     .bg-thirdeye { filter: var(--bg-filter, none); background-image:
       url('https://i.ibb.co/8DWK0tMB/1784937268.png'),
-      radial-gradient(circle at 50% 42%, rgba(20,184,166,0.35), transparent 45%),
+      radial-gradient(circle at 50% 42%, rgba(0,230,200,0.3), transparent 50%),
       linear-gradient(160deg, #2a0d18 0%, #0d2622 50%, #241a08 100%); }
     .bg-codex { filter: var(--bg-filter, none); background-image:
       url('https://i.ibb.co/ns2qhMkq/1784937274.png'),
+      radial-gradient(circle at 50% 45%, rgba(47,208,255,0.18), transparent 50%),
       linear-gradient(160deg, #241a0d 0%, #3a2c18 45%, #1a1208 100%); }
     [data-theme="singularity"] .bg-singularity { opacity: 1; }
     [data-theme="thirdeye"]    .bg-thirdeye    { opacity: 1; }
     [data-theme="codex"]       .bg-codex       { opacity: 1; }
 
-    .bg-overlay { position: fixed; inset: 0; z-index: -3; background: var(--theme-overlay); transition: background 1s ease; pointer-events: none; }
+    .bg-overlay { position: fixed; inset: 0; z-index: -3; background: var(--theme-overlay); transition: background 1s ease; pointer-events: none; animation: theme-breathe 11s ease-in-out infinite; }
+    @keyframes theme-breathe { 0%,100%{opacity:.82} 50%{opacity:1} }
 
     #theme-flash { position: fixed; inset: 0; z-index: 60; pointer-events: none; opacity: 0; background: radial-gradient(circle at 50% 50%, var(--flash, #fff), transparent 70%); mix-blend-mode: screen; }
     #theme-flash.go { animation: warp-flash 0.7s ease-out; }
 
-    /* === EFECTOS encima de la foto (velocidad/opacidad por tema) === */
     .rainbow-blackhole { position: fixed; inset: 0; z-index: -2; overflow: hidden; background: transparent; }
     .blackhole-core { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; background: radial-gradient(circle, transparent 35%, var(--theme-glow) 100%); border-radius: 50%; opacity: 0.5; box-shadow: 0 0 120px var(--theme-primary), 0 0 220px var(--theme-secondary); animation: event-horizon 10s ease-in-out infinite; transition: box-shadow 0.8s ease; }
-    .accretion-ring-1 { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; height: 500px; border-radius: 50%; background: conic-gradient(from 0deg, var(--theme-primary) 0deg, var(--theme-secondary) 60deg, var(--theme-accent) 120deg, var(--theme-primary) 180deg, var(--theme-secondary) 240deg, var(--theme-accent) 300deg, var(--theme-primary) 360deg); opacity: 0.22; filter: blur(28px); animation: accretion-spin var(--spin-dur, 24s) linear infinite; }
-    .accretion-ring-2 { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 700px; height: 700px; border-radius: 50%; background: conic-gradient(from 0deg, transparent 0deg, var(--theme-ring1) 90deg, var(--theme-ring2) 180deg, transparent 270deg, var(--theme-ring3) 360deg); opacity: 0.5; filter: blur(40px); animation: accretion-spin calc(var(--spin-dur, 24s) * 1.5) linear infinite reverse; }
-    .accretion-ring-3 { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 900px; height: 900px; border-radius: 50%; background: conic-gradient(from 0deg, var(--theme-ring2) 0deg, var(--theme-ring3) 120deg, var(--theme-ring1) 240deg, var(--theme-ring2) 360deg); opacity: 0.4; filter: blur(50px); animation: accretion-spin calc(var(--spin-dur, 24s) * 2) linear infinite; }
+    .accretion-ring-1 { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; height: 500px; border-radius: 50%; background: conic-gradient(from 0deg, var(--theme-primary) 0deg, var(--theme-secondary) 60deg, var(--theme-accent) 120deg, var(--theme-primary) 180deg, var(--theme-secondary) 240deg, var(--theme-accent) 300deg, var(--theme-primary) 360deg); opacity: 0.3; filter: blur(28px); animation: accretion-spin var(--spin-dur, 24s) linear infinite; }
+    .accretion-ring-2 { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 700px; height: 700px; border-radius: 50%; background: conic-gradient(from 0deg, transparent 0deg, var(--theme-ring1) 90deg, var(--theme-ring2) 180deg, transparent 270deg, var(--theme-ring3) 360deg); opacity: 0.55; filter: blur(40px); animation: accretion-spin calc(var(--spin-dur, 24s) * 1.5) linear infinite reverse; }
+    .accretion-ring-3 { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 900px; height: 900px; border-radius: 50%; background: conic-gradient(from 0deg, var(--theme-ring2) 0deg, var(--theme-ring3) 120deg, var(--theme-ring1) 240deg, var(--theme-ring2) 360deg); opacity: 0.45; filter: blur(50px); animation: accretion-spin calc(var(--spin-dur, 24s) * 2) linear infinite; }
     .stars-container { position: absolute; inset: 0; }
     .star { position: absolute; background: white; border-radius: 50%; animation: twinkle 3s ease-in-out infinite; box-shadow: 0 0 6px rgba(255,255,255,1), 0 0 12px var(--theme-glow); }
     .star.rainbow { background: linear-gradient(135deg, var(--theme-primary), var(--theme-secondary), var(--theme-accent)); box-shadow: 0 0 10px var(--theme-primary), 0 0 20px var(--theme-secondary); }
@@ -135,8 +137,8 @@
     .theme-preview { width: 42px; height: 42px; border-radius: 10px; position: relative; overflow: hidden; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.25); }
     .theme-preview::before { content: ''; position: absolute; inset: 0; }
     .theme-preview.singularity::before { background: radial-gradient(circle at 50% 50%, #000 22%, transparent 34%), conic-gradient(from 210deg, #ff2bd6, #ffe14d, #39ff88, #2b6bff, #ff2bd6); }
-    .theme-preview.thirdeye::before { background: linear-gradient(160deg, #f3e9d2 0%, #e0356b 35%, #14b8a6 65%, #d4a23a 100%); }
-    .theme-preview.codex::before { background: linear-gradient(160deg, #e7d3a8 0%, #c9a06a 35%, #8a6d3b 65%, #38bdf8 100%); }
+    .theme-preview.thirdeye::before { background: linear-gradient(160deg, #f3e9d2 0%, #ff1f6b 35%, #00e6c8 65%, #ffcf3a 100%); }
+    .theme-preview.codex::before { background: linear-gradient(160deg, #e7d3a8 0%, #e8b15c 35%, #9a6326 65%, #2fd0ff 100%); }
 
     .crypto-ticker-bar { position: fixed; top: 65px; left: 0; right: 0; z-index: 35; background: rgba(12,4,18,0.92); backdrop-filter: blur(10px); border-bottom: 2px solid transparent; border-image: linear-gradient(90deg, var(--theme-primary), var(--theme-secondary), var(--theme-accent)) 1; padding: 0.5rem 1rem; overflow-x: auto; white-space: nowrap; transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
     .crypto-ticker-bar.hidden-bar { transform: translateY(-100%); }
@@ -153,6 +155,10 @@
     .draggable-btn.dragging { cursor: grabbing; transform: scale(1.18); box-shadow: 0 0 45px var(--theme-glow), 0 0 80px var(--theme-secondary); z-index: 300; }
     .ai-robot-btn { right: 15px; top: 80px; background: linear-gradient(135deg, var(--theme-primary), var(--theme-accent)); border: 3px solid rgba(255,255,255,0.8); box-shadow: 0 0 30px var(--theme-glow); animation: robot-float 3s ease-in-out infinite; }
     .radio-toggle-btn { left: 15px; bottom: 100px; background: linear-gradient(135deg, var(--theme-secondary), var(--theme-primary)); border: 3px solid rgba(255,255,255,0.8); box-shadow: 0 0 30px var(--theme-glow); animation: robot-float 3s ease-in-out infinite; }
+
+    /* === BOTÓN DESPLEGABLE DE MENÚ (horizontal móvil) === */
+    .menu-toggle-btn { position: fixed; top: 10px; left: 10px; z-index: 120; width: 44px; height: 44px; border-radius: 12px; display: none; align-items: center; justify-content: center; font-size: 1.3rem; color: #fff; background: linear-gradient(135deg, color-mix(in srgb, var(--theme-primary) 35%, transparent), var(--theme-glow)); border: 2px solid var(--theme-primary); box-shadow: 0 0 20px var(--theme-glow); cursor: pointer; }
+    .menu-toggle-btn.visible { display: flex; }
 
     .ai-panel { position: fixed; top: 150px; right: 15px; width: 320px; max-height: 500px; background: rgba(12,4,20,0.96); backdrop-filter: blur(20px); border: 3px solid var(--theme-glow); border-radius: 20px; padding: 1.5rem; box-shadow: 0 0 60px var(--theme-glow); display: none; flex-direction: column; gap: 1rem; z-index: 99; animation: warp-in 0.5s ease; }
     .ai-panel.active { display: flex; }
@@ -235,6 +241,10 @@
     .window-btn.close { background: #ff0040; }
     .window-btn.minimize { background: #ffcc00; }
     .window-btn.maximize { background: var(--theme-accent); }
+    /* botón "abrir externo" de la ventana */
+    .win-ext { display: flex; align-items: center; gap: 4px; margin-left: auto; margin-right: 8px; padding: 4px 9px; border-radius: 8px; background: rgba(0,0,0,0.35); border: 1px solid var(--theme-accent); color: #fff; font-size: 11px; font-weight: 700; cursor: pointer; transition: all .2s ease; white-space: nowrap; }
+    .win-ext:hover { background: var(--theme-accent); color: #000; box-shadow: 0 0 14px var(--theme-accent); }
+    .win-ext svg { width: 13px; height: 13px; }
     .window-content { flex: 1; position: relative; overflow: hidden; min-height: 0; }
     .window-content iframe { width: 100%; height: 100%; border: none; }
 
@@ -289,7 +299,6 @@
 </head>
 <body class="antialiased" data-theme="singularity">
 
-  <!-- FOTOS DE FONDO REALES (crossfade) + overlay + efectos -->
   <div class="bg-stack">
     <div class="bg-img bg-singularity"></div>
     <div class="bg-img bg-thirdeye"></div>
@@ -310,7 +319,9 @@
     <div id="shooting-stars"></div>
   </div>
 
-  <!-- SELECTOR (3 universos) -->
+  <!-- BOTÓN DESPLEGABLE DE MENÚ (horizontal móvil) -->
+  <button class="menu-toggle-btn" id="toggle-menu-btn" onclick="toggleTopMenu()" title="Mostrar / ocultar menú">☰</button>
+
   <div class="theme-selector" id="theme-selector">
     <h3 class="font-display font-bold mb-3 text-sm" style="color: var(--theme-accent)">Elige tu Universo</h3>
     <div class="theme-option active" data-theme="singularity" onclick="changeTheme('singularity')">
@@ -419,7 +430,7 @@
       </div>
     </div>
 
-    <div class="main-os-layout" style="margin-top: 45px;">
+    <div class="main-os-layout" id="main-os-layout" style="margin-top: 45px;">
       <aside class="side-panel-left hidden lg:flex flex-col w-72 glass-panel border-r-2 border-white/10 z-20 flex-none">
         <div class="p-5 border-b-2 border-white/10"><h3 class="text-sm font-display font-bold uppercase tracking-widest flex items-center gap-2" style="color: var(--theme-primary)"><span class="w-2 h-2 rounded-full" style="background: var(--theme-primary)"></span> Social & Comunidad</h3></div>
         <div class="flex-1 overflow-y-auto no-scrollbar p-4 space-y-2" id="left-sidebar"></div>
@@ -488,20 +499,17 @@
   </div>
 
   <script>
-    // === 🖼️ PRECARGA de las 3 fotos (crossfade instantáneo al cambiar) ===
-    ['https://i.ibb.co/ZR5D2Q0s/1784937263.png','https://i.ibb.co/8DWK0tMB/1784937268.png','https://i.ibb.co/ns2qhMkq/1784937274.png']
-      .forEach(src => { const im = new Image(); im.src = src; });
+    // === 🖼️ PRECARGA de las 3 fotos ===
+    ['https://i.ibb.co/ZR5D2Q0s/1784937263.png','https://i.ibb.co/8DWK0tMB/1784937268.png','https://i.ibb.co/ns2qhMkq/1784937274.png'].forEach(src => { const im = new Image(); im.src = src; });
 
-    // === TEMAS (3 universos) + destello + pulso de logo al cambiar ===
+    // === TEMAS (3 universos) + destello + pulso de logo ===
     function changeTheme(t){
       document.documentElement.setAttribute('data-theme', t);
       localStorage.setItem('icme-theme-v6', t);
       document.querySelectorAll('.theme-option').forEach(o=> o.classList.toggle('active', o.dataset.theme===t));
       document.getElementById('theme-selector').classList.remove('active');
-      const f = document.getElementById('theme-flash');
-      f.classList.remove('go'); void f.offsetWidth; f.classList.add('go');
-      const logo = document.getElementById('logo');
-      if (logo){ logo.classList.remove('pulse'); void logo.offsetWidth; logo.classList.add('pulse'); setTimeout(()=>logo.classList.remove('pulse'), 700); }
+      const f = document.getElementById('theme-flash'); f.classList.remove('go'); void f.offsetWidth; f.classList.add('go');
+      const logo = document.getElementById('logo'); if (logo){ logo.classList.remove('pulse'); void logo.offsetWidth; logo.classList.add('pulse'); setTimeout(()=>logo.classList.remove('pulse'), 700); }
     }
     function toggleThemeSelector(){ document.getElementById('theme-selector').classList.toggle('active'); }
     changeTheme(localStorage.getItem('icme-theme-v6') || 'singularity');
@@ -525,6 +533,36 @@
     document.addEventListener('DOMContentLoaded', ()=>{ makeDraggableWithClick('ai-robot-btn', toggleAI); makeDraggableWithClick('radio-toggle-btn', toggleRadioWidget); });
 
     function isPortrait(){ return window.innerHeight > window.innerWidth; }
+    function isLandscapeMobile(){ return window.innerWidth < 1024 && !isPortrait(); }
+
+    // === 🆕 MENÚ DESPLEGABLE (horizontal móvil) ===
+    let topMenuVisible = true;
+    function toggleTopMenu(){
+      topMenuVisible = !topMenuVisible;
+      const nav = document.getElementById('main-nav');
+      const bar = document.getElementById('crypto-bar');
+      const lau = document.getElementById('game-launcher-wrapper');
+      const btn = document.getElementById('toggle-menu-btn');
+      const lay = document.getElementById('main-os-layout');
+      if (topMenuVisible){ nav.style.display=''; bar.classList.remove('hidden-bar'); lau.classList.remove('launcher-hidden'); lay.style.marginTop='45px'; btn.innerHTML='✕'; }
+      else { nav.style.display='none'; bar.classList.add('hidden-bar'); lau.classList.add('launcher-hidden'); lay.style.marginTop='0'; btn.innerHTML='☰'; }
+    }
+    function applyOrientationUI(){
+      const dock = document.getElementById('mobile-dock');
+      const tbtn = document.getElementById('toggle-menu-btn');
+      if (window.innerWidth >= 1024){            // escritorio: menú siempre visible, dock oculto por CSS
+        dock.style.display=''; tbtn.classList.remove('visible');
+        if (!topMenuVisible) toggleTopMenu();
+        return;
+      }
+      if (isLandscapeMobile()){                  // horizontal móvil: colapsar menú para ventanas grandes
+        dock.style.display='none'; tbtn.classList.add('visible');
+        if (topMenuVisible) toggleTopMenu();
+      } else {                                   // vertical móvil: menú y dock visibles
+        dock.style.display='flex'; tbtn.classList.remove('visible');
+        if (!topMenuVisible) toggleTopMenu();
+      }
+    }
 
     // === PRECIOS ===
     async function fetchICPPrice(){ try{ const r=await fetch('https://api.coingecko.com/api/v3/simple/price?ids=internet-computer&vs_currencies=usd'); const d=await r.json(); document.getElementById('icp-price').textContent='$'+d['internet-computer'].usd.toFixed(2);}catch(e){document.getElementById('icp-price').textContent='$8.42';} }
@@ -539,7 +577,7 @@
     function toggleAI(){ aiPanelOpen=!aiPanelOpen; document.getElementById('ai-panel').classList.toggle('active', aiPanelOpen); }
     function handleAIKeypress(e){ if(e.key==='Enter') sendAIMessage(); }
     function sendAIMessage(){ const i=document.getElementById('ai-input'); const m=i.value.trim(); if(!m)return; const b=document.getElementById('ai-messages'); const u=document.createElement('div'); u.className='ai-message user'; u.textContent=m; b.appendChild(u); i.value=''; b.scrollTop=b.scrollHeight; setTimeout(()=>{ const a=document.createElement('div'); a.className='ai-message assistant'; a.textContent=getAIResponse(m); b.appendChild(a); b.scrollTop=b.scrollHeight; },500); }
-    function getAIResponse(m){ const l=m.toLowerCase(); if(l.includes('precio')||l.includes('icp')||l.includes('btc'))return 'Los precios de ICP, BTC, SATS y CYCLES se actualizan cada 30s arriba. 📈'; if(l.includes('tema')||l.includes('color')||l.includes('universo')||l.includes('fondo'))return 'Toca el logo para viajar entre 3 universos con su foto de fondo: 🌀 Singularidad, 💀 Tercer Ojo y ⚙️ Códice Autómata. Al cambiar verás un destello de warp. ✨'; if(l.includes('monitor'))return 'World Monitor es un dashboard en vivo del planeta: conflictos, clima, tráfico aéreo y más. Se abre en ventana. 📡'; if(l.includes('dsocial'))return 'DSocial es una red social / foro de ICP con posts Hot, Top Rated y Newest. Ábrela desde Social & Comunidad. 🗨️'; if(l.includes('piverse'))return 'PiVerse es nuestro metaverso cuántico. Desliza dentro de su ventana para ver todo. 🌌'; if(l.includes('trippy'))return 'Trippy es un viaje psicodélico en ICP. Combina perfecto con el universo Tercer Ojo. 🌀'; if(l.includes('radio')||l.includes('música'))return 'Toca 🎵 para la radio. El botón se oculta mientras está abierta. 🎧'; if(l.includes('hola')||l.includes('hi'))return '¡Hola! Soy Nexus 🌈 ¿En qué te ayudo?'; return 'Interesante. Te ayudo con juegos, universos, radio, wallets y más. ¿Qué necesitas? 🤖'; }
+    function getAIResponse(m){ const l=m.toLowerCase(); if(l.includes('precio')||l.includes('icp')||l.includes('btc'))return 'Los precios de ICP, BTC, SATS y CYCLES se actualizan cada 30s arriba. 📈'; if(l.includes('tema')||l.includes('color')||l.includes('universo')||l.includes('fondo'))return 'Toca el logo para viajar entre 3 universos con su foto de fondo. En horizontal usa ☰ para desplegar el menú. ✨'; if(l.includes('error')||l.includes('no carga')||l.includes('externo'))return 'Si una app no carga dentro de la ventana, usa el botón ↗ de su cabecera para abrirla en una pestaña nueva. 🔗'; if(l.includes('monitor'))return 'World Monitor es un dashboard en vivo del planeta. Si no carga en la ventana, ábrelo con ↗. 📡'; if(l.includes('dsocial'))return 'DSocial es una red social / foro de ICP. Está en Social & Comunidad. 🗨️'; if(l.includes('piverse'))return 'PiVerse es nuestro metaverso cuántico. Desliza dentro de su ventana para ver todo. 🌌'; if(l.includes('trippy'))return 'Trippy es un viaje psicodélico en ICP. Combina perfecto con el universo Tercer Ojo. 🌀'; if(l.includes('radio')||l.includes('música'))return 'Toca 🎵 para la radio. El botón se oculta mientras está abierta. 🎧'; if(l.includes('hola')||l.includes('hi'))return '¡Hola! Soy Nexus 🌈 ¿En qué te ayudo?'; return 'Interesante. Te ayudo con juegos, universos, radio, wallets y más. ¿Qué necesitas? 🤖'; }
 
     // === RADIO ===
     let radioWidgetOpen = false;
@@ -556,7 +594,13 @@
     function addWindow(app){ if(windows.length>=getMaxWindows()){ alert('Máximo '+getMaxWindows()+' ventanas. Cierra una primero.'); return; } const id=windowIdCounter++; windows.push({ id, title:app.name, url:app.url, icon:app.icon, isInternal:!!app.isInternal }); renderWindows(); closeWindowManager(); closeHub(); if(isPortrait()&&window.innerWidth<1024) hideLauncher(); }
     function closeWindow(id){ const c=document.getElementById('window-'+id); if(c){ c.classList.add('closing'); setTimeout(()=>{ windows=windows.filter(w=>w.id!==id); renderWindows(); },600); } }
     function focusWindow(id){ windows.forEach(w=>{ const c=document.getElementById('window-'+w.id); if(c) c.classList.toggle('active', w.id===id); }); }
-    function renderWindows(){ const g=document.getElementById('window-grid'); if(!windows.length){ g.innerHTML=''; g.className='window-grid'; return; } const p=isPortrait()&&window.innerWidth<1024; if(p) g.className=windows.length===1?'window-grid portrait-single':'window-grid portrait-multi'; else g.className=windows.length===1?'window-grid landscape-single':windows.length===2?'window-grid landscape-two':'window-grid landscape-multi'; g.innerHTML=windows.map((w,i)=>`<div class="window-container ${i===0?'active':''}" id="window-${w.id}" onclick="focusWindow(${w.id})"><div class="window-header"><div class="flex items-center gap-2"><div class="window-controls"><button class="window-btn close" onclick="event.stopPropagation(); closeWindow(${w.id})"></button><button class="window-btn minimize" onclick="event.stopPropagation()"></button><button class="window-btn maximize" onclick="event.stopPropagation()"></button></div><span class="text-2xl ml-2">${w.icon}</span><span class="font-bold truncate max-w-[150px]">${w.title}</span></div></div><div class="window-content">${w.isInternal?renderInternalGame(w.url):`<iframe src="${w.url}" title="${w.title}"></iframe>`}</div></div>`).join(''); }
+    // 🆕 abrir app en pestaña nueva (para las que bloquean iframe)
+    function openExternal(url){ window.open(url, '_blank', 'noopener'); }
+    function renderWindows(){ const g=document.getElementById('window-grid'); if(!windows.length){ g.innerHTML=''; g.className='window-grid'; return; } const p=isPortrait()&&window.innerWidth<1024; if(p) g.className=windows.length===1?'window-grid portrait-single':'window-grid portrait-multi'; else g.className=windows.length===1?'window-grid landscape-single':windows.length===2?'window-grid landscape-two':'window-grid landscape-multi';
+      g.innerHTML=windows.map((w,i)=>{
+        const extBtn = w.isInternal ? '' : `<button class="win-ext" onclick="event.stopPropagation(); openExternal('${w.url}')" title="Abrir en pestaña nueva"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>Abrir</button>`;
+        return `<div class="window-container ${i===0?'active':''}" id="window-${w.id}" onclick="focusWindow(${w.id})"><div class="window-header"><div class="flex items-center gap-2"><div class="window-controls"><button class="window-btn close" onclick="event.stopPropagation(); closeWindow(${w.id})"></button><button class="window-btn minimize" onclick="event.stopPropagation()"></button><button class="window-btn maximize" onclick="event.stopPropagation()"></button></div><span class="text-2xl ml-2">${w.icon}</span><span class="font-bold truncate max-w-[150px]">${w.title}</span></div>${extBtn}</div><div class="window-content">${w.isInternal?renderInternalGame(w.url):`<iframe src="${w.url}" title="${w.title}"></iframe>`}</div></div>`;
+      }).join(''); }
     function renderInternalGame(t){ if(t==='piverse') return `<div class="piverse-screen"><div class="piverse-galaxy"></div><div class="piverse-content"><div class="piverse-logo"><span>🌌</span></div><h2 class="piverse-title">PiVerse</h2><p class="piverse-subtitle">El metaverso cuántico de ICME OS</p><div class="coming-soon-badge">PRÓXIMAMENTE 🚀</div><div class="piverse-features"><div class="feature-card"><div class="feature-icon">🪐</div><div class="feature-title">Mundos Virtuales</div><div class="feature-desc">Explora universos infinitos generados proceduralmente</div></div><div class="feature-card"><div class="feature-icon">💎</div><div class="feature-title">Tokens Reales</div><div class="feature-desc">Gana tokens ICP canjeables por completar misiones</div></div><div class="feature-card"><div class="feature-icon">🖼️</div><div class="feature-title">NFTs Únicos</div><div class="feature-desc">Colecciona items exclusivos minteados en blockchain</div></div><div class="feature-card"><div class="feature-icon">👥</div><div class="feature-title">Multiplayer</div><div class="feature-desc">Juega con amigos de todo el mundo en tiempo real</div></div></div><div class="notify-form"><input type="email" class="notify-input" placeholder="tu@email.com para notificaciones"><button class="notify-btn" onclick="notifyMe()">Notificarme</button></div></div></div>`; return ''; }
     function notifyMe(){ const i=document.querySelector('.notify-input'); if(i.value&&i.value.includes('@')){ alert('¡Gracias! Te avisaremos cuando PiVerse esté listo. 🌌'); i.value=''; } else alert('Ingresa un email válido.'); }
 
@@ -595,7 +639,6 @@
       { name: "ICP Gamma", url: "https://uoznz-naaaa-aaaab-qea7q-cai.icp0.io/", icon: "⚔️", color: "neon-green" },
       { name: "PiVerse", url: "piverse", icon: "🌌", color: "neon-cyan", isInternal: true }
     ];
-    // 🆕 DSocial agregada a Social & Comunidad
     const leftApps = [ { name:"YouTube", url:"https://www.youtube.com/", icon:"🔴" }, { name:"X (Twitter)", url:"https://x.com/", icon:"⚫" }, { name:"Facebook", url:"https://web.facebook.com/", icon:"🔵" }, { name:"WhatsApp", url:"https://web.whatsapp.com/", icon:"🟢" }, { name:"OpenChat", url:"https://oc.app/communities", icon:"💬" }, { name:"Distrikt", url:"https://az5sd-cqaaa-aaaae-aaarq-cai.ic0.app/", icon:"🟣" }, { name:"DSCVR", url:"https://social.dscvr.one/", icon:"🌐" }, { name:"DSocial", url:"https://dwqte-viaaa-aaaai-qaufq-cai.ic0.app/", icon:"🗨️" } ];
     const rightApps = [ { name:"NNS", url:"https://nns.ic0.app/", icon:"🛡️" }, { name:"OISY", url:"https://oisy.com/", icon:"🟦" }, { name:"ICPSwap", url:"https://app.icpswap.com/", icon:"🔄" }, { name:"Rumi", url:"https://app.rumiprotocol.com/", icon:"💎" }, { name:"1sec.to", url:"https://1sec.to/", icon:"⏱️" }, { name:"BOB", url:"https://launch.bob.fun/", icon:"🚀" }, { name:"ICLight", url:"https://avjzx-pyaaa-aaaaj-aadmq-cai.raw.ic0.app/", icon:"💡" } ];
 
@@ -605,8 +648,9 @@
     function toggleAuthMenu(){ document.getElementById('auth-dropdown').classList.toggle('hidden'); }
     function toggleMobileDrawer(side, force=null){ const d=document.getElementById('mobile-drawer-'+side), c=d.querySelector('.transform'), hide=force===false||(force===null&&!d.classList.contains('hidden')); if(hide){ c.classList.add('translate-y-full'); setTimeout(()=>d.classList.add('hidden'),300); } else { d.classList.remove('hidden'); setTimeout(()=>c.classList.remove('translate-y-full'),10); } showUI(); }
 
-    window.addEventListener('resize', ()=>{ renderWindows(); if(!isPortrait()||window.innerWidth>=1024) showLauncher(); });
-    document.addEventListener('DOMContentLoaded', ()=>{ createRainbowBackground(); renderGameLauncher(); renderSidebars(); renderWindows(); startAutoHide(); });
+    window.addEventListener('resize', ()=>{ renderWindows(); applyOrientationUI(); if(!isLandscapeMobile()) showLauncher(); });
+    window.addEventListener('orientationchange', ()=>{ setTimeout(()=>{ renderWindows(); applyOrientationUI(); }, 300); });
+    document.addEventListener('DOMContentLoaded', ()=>{ createRainbowBackground(); renderGameLauncher(); renderSidebars(); renderWindows(); applyOrientationUI(); startAutoHide(); });
     document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeWindowManager(); closeHub(); closeQRModal(); document.getElementById('auth-dropdown').classList.add('hidden'); document.getElementById('theme-selector').classList.remove('active'); if(aiPanelOpen) toggleAI(); if(radioWidgetOpen) toggleRadioWidget(); } });
     document.addEventListener('click', e=>{ if(!e.target.closest('.relative')) document.getElementById('auth-dropdown').classList.add('hidden'); if(!e.target.closest('#theme-selector')&&!e.target.closest('.logo-rainbow')) document.getElementById('theme-selector').classList.remove('active'); });
     setTimeout(()=>{ const h=document.getElementById('ui-hint'); if(h){ h.style.opacity='0'; setTimeout(()=>{ if(h) h.style.display='none'; },1000); } }, 8000);
