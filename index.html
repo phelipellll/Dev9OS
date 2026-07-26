@@ -53,10 +53,7 @@ body{background:var(--surf3);color:var(--ink);touch-action:manipulation;position
 .bp:hover{transform:rotate(12deg) scale(1.08);box-shadow:0 0 16px var(--glow)}
 .win-badge{position:absolute;top:-7px;right:-7px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:var(--ac);color:#02122b;font-size:10px;font-weight:800;display:none;align-items:center;justify-content:center;box-shadow:0 0 8px var(--ac)}
 .win-badge.on{display:flex}
-.gc{transition:all .3s;border:2px solid var(--surf-border);flex-shrink:0;background:var(--surf2);position:relative;overflow:hidden}
-.gc:hover{transform:translateY(-6px) scale(1.08);border-color:var(--p);box-shadow:0 12px 30px -8px var(--glow)}
-.gc .gn{color:var(--inks)}.gc.live::before{content:'EN VIVO';position:absolute;top:5px;right:5px;font-size:7px;font-weight:800;color:#02122b;background:var(--ac);padding:1px 5px;border-radius:5px;box-shadow:0 0 8px var(--ac)}
-.lco{position:absolute;top:6px;right:8px;z-index:5;width:30px;height:30px;border-radius:9px;background:rgba(0,0,0,.45);border:1px solid var(--glow);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}
+/* nav */
 .nav-in{max-width:1920px;margin:0 auto;padding:0 12px;display:flex;align-items:center;justify-content:space-between;height:62px;gap:8px;position:relative}
 .nav-l{display:flex;align-items:center;gap:10px;min-width:0}
 .brand{font-family:'Orbitron',sans-serif;font-weight:900;font-size:clamp(20px,3vw,30px);white-space:nowrap;flex-shrink:0}
@@ -64,12 +61,16 @@ body{background:var(--surf3);color:var(--ink);touch-action:manipulation;position
 .nav-r{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;flex-shrink:0}
 .online-pill{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--ac);padding:6px 12px;border-radius:999px;border:2px solid var(--surf-border);background:var(--surf2);white-space:nowrap}
 .nav-r .bg2{display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:12px;font-size:12px;font-weight:700;white-space:nowrap}
+/* iconos sin letra (escritorio) */
+.nr-ico{font-size:16px;padding:7px 11px;min-width:0}
 #nav-more-btn{font-size:16px;padding:7px 12px}
 .nav-more{position:absolute;right:12px;top:calc(100% + 8px);display:none;flex-direction:column;gap:5px;background:var(--surf);border:2px solid var(--surf-border);border-radius:16px;padding:8px;min-width:212px;box-shadow:0 18px 50px rgba(0,0,0,.6);backdrop-filter:blur(16px)}
 .nav-more.on{display:flex;animation:wi .2s ease both}
 .nav-more button{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:11px;background:var(--surf2);border:1px solid var(--surf-border);color:var(--ink);font-size:13px;font-weight:600;cursor:pointer;text-align:left;transition:transform .12s,border-color .15s}
 .nav-more button:hover{border-color:var(--ac);transform:translateX(3px)}
-@media(max-width:880px){.nav-r .nav-inline{display:none}.online-pill{display:none}}
+@media(max-width:1024px){.nr-ico{display:none!important}.online-pill{display:none!important}}
+@media(min-width:1025px){#nav-more [data-nr="verify"],#nav-more [data-nr="win"],#nav-more [data-nr="mon"],#nav-more [data-nr="qr"]{display:none}}
+/* precios */
 .ctb{position:fixed;top:62px;left:0;right:0;z-index:35;background:var(--surf);backdrop-filter:blur(10px);padding:.5rem 1rem;overflow-x:auto;white-space:nowrap}
 .ctb::after{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,var(--p),var(--s),var(--ac),var(--p));background-size:200% 100%;animation:rs 8s linear infinite}
 .ctc{display:inline-flex;gap:1rem}.cti{position:relative;display:inline-flex;align-items:center;gap:.5rem;padding:.4rem .75rem;background:linear-gradient(135deg,var(--ga),var(--surf2));border:2px solid var(--surf-border);border-radius:12px;cursor:pointer;transition:transform .2s,border-color .2s}
@@ -78,12 +79,10 @@ body{background:var(--surf3);color:var(--ink);touch-action:manipulation;position
 .ci.icp{background:linear-gradient(135deg,var(--p),var(--s),var(--ac));color:#000}.ci.btc{background:linear-gradient(135deg,#ff6600,#ffcc00);color:#000}.ci.sats{background:linear-gradient(135deg,#00ff66,#00ffff);color:#000}.ci.cyc{background:linear-gradient(135deg,var(--p),var(--s));color:#000}
 .cv{font-family:'Orbitron',sans-serif;font-weight:700;font-size:.85rem;background:linear-gradient(135deg,var(--ac),var(--p),var(--s));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .cv.fu{animation:pf .6s ease}@keyframes pf{0%{filter:brightness(2.2)}100%{filter:brightness(1)}}
+/* contenedor */
 .ac{display:flex;flex-direction:column;height:100vh;height:100dvh;overflow:hidden;position:relative;z-index:1}
 .mol{display:flex;flex-direction:column;flex:1;overflow:hidden;min-height:0}
 .cc{flex:1;display:flex;flex-direction:column;overflow:hidden;min-height:0;padding:.75rem;gap:.75rem}
-.lah{position:relative;transition:transform .4s,opacity .4s,max-height .4s;max-height:200px;overflow:hidden}
-.lah.lh{transform:translateY(-100%);opacity:0;max-height:0;padding:0;margin:0;pointer-events:none}
-.glc{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:.5rem;scrollbar-width:none}
 .wg{display:grid;gap:1rem;flex:1;overflow:hidden;position:relative;z-index:10}
 .wg.ps1{grid-template-columns:1fr;grid-auto-rows:minmax(300px,1fr);overflow-y:auto}.wg.ls1{grid-template-columns:1fr;grid-template-rows:1fr}.wg.lt{grid-template-columns:1fr 1fr;grid-template-rows:1fr}.wg.lm{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr}
 .wc{position:relative;background:var(--surf);border:3px solid var(--surf-border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;animation:wc-in .5s cubic-bezier(.2,1.2,.3,1);min-height:200px}
@@ -99,6 +98,7 @@ body{background:var(--surf3);color:var(--ink);touch-action:manipulation;position
 .nfo{position:relative;width:100px;height:100px;display:flex;align-items:center;justify-content:center;font-size:2.6rem}
 .nft{font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.2rem}
 .nfo2{margin-top:.2rem;padding:.8rem 1.4rem;border-radius:14px;font-weight:800;color:#02101e;background:linear-gradient(135deg,var(--ac),var(--p));box-shadow:0 0 24px var(--glow);cursor:pointer;border:none}
+/* gestor */
 .wm{position:fixed;inset:0;background:rgba(5,5,16,.98);backdrop-filter:blur(40px);z-index:200;display:none;align-items:center;justify-content:center;padding:2rem}
 .wm.active{display:flex;animation:wi .5s ease}
 @keyframes wi{0%{opacity:0;transform:scale(.6)}100%{opacity:1;transform:scale(1)}}
@@ -108,6 +108,7 @@ body{background:var(--surf3);color:var(--ink);touch-action:manipulation;position
 .wmi:hover{transform:translateY(-4px) scale(1.03);box-shadow:0 0 24px var(--glow)}
 .wmi.min{opacity:.7;border-style:dashed}
 .wmi .wm-x{position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:7px;background:rgba(255,0,64,.25);border:1px solid #ff0040;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}
+/* hub + qr */
 .hm{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(30px);z-index:150;display:none;align-items:center;justify-content:center;padding:2rem}
 .hm.active{display:flex;animation:wi .5s ease}
 .hc{width:100%;max-width:1400px;height:85vh;background:var(--surf);border:3px solid var(--surf-border);border-radius:24px;display:flex;flex-direction:column;overflow:hidden}
@@ -120,29 +121,29 @@ body{background:var(--surf3);color:var(--ink);touch-action:manipulation;position
 .qm{position:fixed;inset:0;background:rgba(0,0,0,.9);backdrop-filter:blur(30px);z-index:200;display:none;align-items:center;justify-content:center;padding:2rem}
 .qm.active{display:flex;animation:wi .5s ease}
 .qc{background:var(--surf);border:3px solid var(--surf-border);border-radius:24px;padding:2rem;max-width:500px;width:100%}
+/* orbes */
 .db{position:fixed;z-index:9999;width:52px;height:52px;border-radius:50%;cursor:grab;user-select:none;touch-action:none;display:flex;align-items:center;justify-content:center;font-size:1.5rem;will-change:top,transform;pointer-events:auto;transition:transform .18s,box-shadow .2s,opacity .25s}
 .db:hover{transform:scale(1.12)}
 .db.dragging{cursor:grabbing;transform:scale(1.18)}
 .db::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--ac);animation:rp 1.8s ease-out infinite;pointer-events:none}
 .db.io::after{animation:none;opacity:0}
 @keyframes rp{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.9);opacity:0}}
-/* orbes: escritorio en esquinas inferiores (2 columnas de 3, sin dock) */
 .rtb{left:18px;bottom:18px;background:linear-gradient(135deg,var(--s),var(--p));border:3px solid rgba(255,255,255,.9);box-shadow:0 0 30px var(--glow)}
-.sob{left:18px;bottom:84px;background:linear-gradient(135deg,#00ffff,var(--s));border:3px solid rgba(255,255,255,.9);box-shadow:0 0 30px var(--glow)}
-.lo{left:18px;bottom:150px;background:conic-gradient(from 140deg,var(--ac),var(--p),var(--s),var(--ac));border:3px solid rgba(255,255,255,.9);box-shadow:0 0 26px var(--glow);width:56px;height:56px}
 .arb{right:18px;bottom:18px;background:linear-gradient(135deg,var(--p),var(--ac));border:3px solid rgba(255,255,255,.9);box-shadow:0 0 30px var(--glow)}
-.dob{right:18px;bottom:84px;background:linear-gradient(135deg,#ffcc00,var(--p));border:3px solid rgba(255,255,255,.9);box-shadow:0 0 30px var(--glow)}
-.cob{right:18px;bottom:150px;background:linear-gradient(135deg,var(--ac),#00ffff);border:3px solid rgba(255,255,255,.9);box-shadow:0 0 30px var(--glow)}
-/* movil: franja segura entre nav(110) y dock(120); 2 columnas; launcher-orb oculto (Juegos vive en el dock) */
-@media(max-width:1024px){
- #launcher-orb{display:none!important}
- .rtb{left:12px;top:120px;bottom:auto}.sob{left:12px;top:184px;bottom:auto}
- .arb{right:12px;top:120px;bottom:auto}.dob{right:12px;top:184px;bottom:auto}.cob{right:12px;top:248px;bottom:auto;width:46px;height:46px}
-}
-.lo{cursor:grab;user-select:none;touch-action:none;display:none;align-items:center;justify-content:center;font-size:1.5rem;pointer-events:auto}
+.cob{right:18px;bottom:84px;background:linear-gradient(135deg,var(--ac),#00ffff);border:3px solid rgba(255,255,255,.9);box-shadow:0 0 30px var(--glow)}
+.lo{left:18px;bottom:84px;background:conic-gradient(from 140deg,var(--ac),var(--p),var(--s),var(--ac));border:3px solid rgba(255,255,255,.9);box-shadow:0 0 26px var(--glow);width:56px;height:56px;cursor:grab;user-select:none;touch-action:none;display:none;align-items:center;justify-content:center;font-size:1.5rem;pointer-events:auto}
 .lo.visible{display:flex}
 .lo::before{content:'';position:absolute;inset:5px;border-radius:50%;background:radial-gradient(circle at 50% 45%,rgba(0,0,0,.55),rgba(0,0,0,.15) 70%)}
 .lo .em{position:relative;z-index:2}
+/* orbes por dispositivo (sin social/defi) */
+@media(max-width:1024px){
+ .rtb{left:12px;top:120px;right:auto;bottom:auto}
+ .cob{left:12px;top:184px;right:auto;bottom:auto}
+ .arb{right:12px;top:120px;left:auto;bottom:auto}
+ .lo{display:none!important}
+}
+@media(min-width:1025px){ .lo{display:flex!important} }
+/* IA + radio + cronicas */
 .aip{position:fixed;top:150px;right:15px;width:320px;max-height:500px;background:var(--surf);backdrop-filter:blur(20px);border:3px solid var(--surf-border);border-radius:20px;padding:1.5rem;box-shadow:0 0 60px var(--glow);display:none;flex-direction:column;gap:1rem;z-index:9998}
 .aip.active{display:flex;animation:wi .4s ease both}
 .aim{flex:1;overflow-y:auto;max-height:300px;padding:.5rem}
@@ -180,8 +181,8 @@ body{background:var(--surf3);color:var(--ink);touch-action:manipulation;position
 .mdk.collapsed{transform:translateY(150%) scale(.55);opacity:0;pointer-events:none;box-shadow:none}
 .mdk.collapsed>button{opacity:0;transform:scale(.25) translateY(26px)}
 .mdk>button{transition:transform .38s cubic-bezier(.34,1.5,.4,1),opacity .3s,background .2s}
-.mdk.collapsed>button:nth-of-type(1){transition-delay:.02s}.mdk.collapsed>button:nth-of-type(2){transition-delay:.06s}.mdk.collapsed>button:nth-of-type(3){transition-delay:.10s}
-.mdk:not(.collapsed)>button:nth-of-type(1){transition-delay:.10s}.mdk:not(.collapsed)>button:nth-of-type(2){transition-delay:.06s}.mdk:not(.collapsed)>button:nth-of-type(3){transition-delay:.02s}
+.mdk.collapsed>button:nth-of-type(1){transition-delay:.02s}.mdk.collapsed>button:nth-of-type(2){transition-delay:.06s}.mdk.collapsed>button:nth-of-type(3){transition-delay:.10s}.mdk.collapsed>button:nth-of-type(4){transition-delay:.14s}
+.mdk:not(.collapsed)>button:nth-of-type(1){transition-delay:.14s}.mdk:not(.collapsed)>button:nth-of-type(2){transition-delay:.10s}.mdk:not(.collapsed)>button:nth-of-type(3){transition-delay:.06s}.mdk:not(.collapsed)>button:nth-of-type(4){transition-delay:.02s}
 #dock-pill{position:fixed;left:50%;bottom:12px;transform:translateX(-50%) translateY(140%) scale(.6);transform-origin:bottom center;opacity:0;pointer-events:none;z-index:51;display:flex;align-items:center;gap:9px;padding:7px 16px 7px 13px;border-radius:999px;background:color-mix(in srgb,var(--surf) 86%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--surf-border);box-shadow:0 8px 26px -6px rgba(0,0,0,.6),0 0 22px -4px var(--glow);cursor:pointer;transition:transform .4s cubic-bezier(.34,1.5,.4,1),opacity .3s}
 #dock-pill.on{transform:translateX(-50%) translateY(0) scale(1);opacity:1;pointer-events:auto}
 #dock-pill:active{transform:translateX(-50%) scale(.92)}
@@ -194,9 +195,28 @@ body{background:var(--surf3);color:var(--ink);touch-action:manipulation;position
 body.dock-sleep .cc{padding-bottom:.5rem}
 @media(min-width:1024px){#dock-pill{display:none!important}.mdk{display:none!important}}
 .uit{position:fixed;z-index:45;pointer-events:all;bottom:0;left:0;right:0;height:30px}
-.uh{position:fixed;bottom:8px;left:50%;transform:translateX(-50%);width:40px;height:4px;background:rgba(255,255,255,.5);border-radius:2px;z-index:44;animation:hp 2s ease-in-out infinite;pointer-events:none}
-@keyframes hp{0%,100%{opacity:.4;transform:translateX(-50%) scaleX(1)}50%{opacity:1;transform:translateX(-50%) scaleX(1.4)}}
-/* cartel amable cuando el motor aun no esta (entre partes) */
+/* ARCADE dock */
+#arcade{position:fixed;left:50%;bottom:96px;transform:translateX(-50%) translateY(24px) scale(.92);transform-origin:bottom center;width:min(560px,94vw);max-height:70vh;background:var(--surf);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:2px solid var(--surf-border);border-radius:22px;box-shadow:0 22px 60px -12px rgba(0,0,0,.7),0 0 40px -6px var(--glow);padding:12px 12px 14px;z-index:120;opacity:0;pointer-events:none;transition:transform .4s cubic-bezier(.34,1.5,.4,1),opacity .3s;display:flex;flex-direction:column;gap:10px}
+#arcade.on{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0) scale(1)}
+#arcade::before{content:'';position:absolute;left:50%;top:-7px;transform:translateX(-50%);width:74px;height:5px;border-radius:4px;background:linear-gradient(90deg,var(--p),var(--ac),var(--s));background-size:200% 100%;animation:rs 3s linear infinite;box-shadow:0 0 12px var(--glow)}
+.arc-h{display:flex;align-items:center;justify-content:space-between;padding:2px 6px 0}
+.arc-h>span{font-family:'Orbitron',sans-serif;font-weight:800;font-size:12px;letter-spacing:.18em;color:var(--ac);text-transform:uppercase;display:flex;align-items:center;gap:7px}
+.arc-h>span::after{content:'';width:7px;height:7px;border-radius:50%;background:var(--ac);box-shadow:0 0 8px var(--ac);animation:tw 1.6s ease-in-out infinite}
+.arc-x{width:30px;height:30px;border-radius:10px;border:1px solid rgba(255,0,64,.5);background:rgba(255,0,64,.18);color:#fff;cursor:pointer;font-size:14px;transition:transform .15s}
+.arc-x:hover{transform:rotate(90deg) scale(1.1)}
+.arc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(82px,1fr));gap:10px;overflow-y:auto;padding:4px 2px 2px;scrollbar-width:thin}
+.arc-item{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 4px 8px;border-radius:16px;background:var(--surf2);border:1px solid var(--surf-border);cursor:pointer;position:relative;transition:transform .18s cubic-bezier(.34,1.5,.4,1),box-shadow .2s,border-color .2s}
+.arc-item:hover{transform:translateY(-4px) scale(1.06);border-color:var(--p);box-shadow:0 10px 24px -8px var(--glow)}
+.arc-item:active{transform:scale(.94)}
+.arc-disc{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-size:22px;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.32),rgba(20,10,30,.86));border:2px solid rgba(255,255,255,.45);box-shadow:0 0 14px -2px var(--glow);transition:transform .2s}
+.arc-item:hover .arc-disc{transform:rotate(-8deg) scale(1.08)}
+.arc-name{font-size:9px;font-weight:700;color:var(--inks);text-align:center;line-height:1.15;max-width:74px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.arc-item.live{border-color:var(--ac);box-shadow:0 0 18px -4px var(--ac)}
+.arc-item.live .arc-disc{border-color:var(--ac);animation:arcpulse 1.8s ease-in-out infinite}
+@keyframes arcpulse{0%,100%{box-shadow:0 0 14px -2px var(--ac)}50%{box-shadow:0 0 26px 2px var(--ac)}}
+.arc-item.live::after{content:'EN VIVO';position:absolute;top:5px;right:5px;font-size:6px;font-weight:900;letter-spacing:.05em;color:#02122b;background:var(--ac);padding:1px 4px;border-radius:5px;box-shadow:0 0 8px var(--ac)}
+@media(max-width:1024px){#arcade{left:8px;right:8px;bottom:80px;transform:translateY(24px) scale(.94);width:auto}#arcade.on{transform:translateY(0) scale(1)}}
+/* cartel amable (entre partes) */
 .pv-pend{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:24px;background:radial-gradient(circle at 50% 42%,rgba(20,8,40,.7),rgba(2,2,8,.95) 70%);z-index:30}
 .pv-pend .ring{width:84px;height:84px;border-radius:50%;border:3px solid transparent;border-top-color:var(--ac);border-right-color:var(--p);animation:ls 1.2s linear infinite}
 .pv-pend h2{font-family:'Cinzel',serif;font-weight:900;font-size:clamp(26px,7vw,48px);background:linear-gradient(90deg,var(--p),var(--ac),var(--s));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
@@ -245,12 +265,7 @@ body.dock-sleep .cc{padding-bottom:.5rem}
 <div class="bg-stack"><div class="bg-photo bg-rainbow"></div><div class="bg-photo bg-thirdeye"></div><div class="bg-photo bg-codex"></div></div>
 <div class="bg-overlay"></div>
 <div class="rbh"><div class="bhc"></div><div class="ar1"></div><div class="ar2"></div><div class="stc" id="stars-container"></div><div id="shooting-stars"></div></div>
-<button class="db sob" id="social-orb" title="Social">💬</button>
-<button class="db dob" id="defi-orb" title="DeFi">💎</button>
-<button class="db cob" id="chron-orb" title="Cronicas">📜</button>
-<div class="sd left" id="drawer-social" style="display:none"></div>
-<div class="sd right" id="drawer-defi" style="display:none"></div>
-<div class="ts" id="theme-selector" style="display:none"></div>
+<button class="db cob" id="chron-orb" title="Cronicas de Gaia">📜</button>
 <button class="db arb" id="ai-robot-btn" title="Nexus AI">🤖</button>
 <div class="aip" id="ai-panel"><div class="aih"><div class="flex items-center gap-2"><span class="text-2xl">🤖</span><span class="font-display font-bold" style="color:var(--ac)">NEXUS AI</span></div><button onclick="toggleAI()" style="color:#9aa6c6;background:none;border:none;cursor:pointer">✕</button></div><div class="aim" id="ai-messages"><div class="am a">Soy Nexus 🌈 Preguntame por tierras, crafteo, monturas, jefes o el cosmos.</div></div><div class="aic"><input type="text" class="aii" id="ai-input" placeholder="Preguntame…" onkeypress="if(event.key==='Enter')sendAIMessage()"><button class="ais" onclick="sendAIMessage()">Enviar</button></div></div>
 <button class="db rtb" id="radio-toggle-btn" title="Radio">🎵</button>
@@ -258,21 +273,22 @@ body.dock-sleep .cc{padding-bottom:.5rem}
 <div class="ac">
 <nav class="ng z-50 flex-none" id="main-nav"><div class="nav-in">
 <div class="nav-l"><div class="lg" id="logo" onclick="event.stopPropagation();cycleTheme()"></div><span class="brand bt" id="os-title">AETHERIA</span><span class="verpill">v∞</span><button class="bp" id="palette-btn" onclick="event.stopPropagation();cycleTheme()" title="Universo">🎨</button><button class="bp" onclick="openOwner()" title="Estudio">🗂️</button></div>
-<div class="nav-r"><span class="online-pill"><span class="w-2 h-2 rounded-full bg-green-400" style="animation:tw 2s infinite"></span>ONLINE</span><button class="bg2 nav-inline" onclick="openVerifyMenu()">✅ <span>Verificar</span></button><button class="bg2 nav-inline" onclick="openWindowManager()">🪟 <span>Ventanas</span><span class="win-badge" id="win-badge">0</span></button><button class="bg2" id="nav-more-btn" aria-label="Mas">☰</button></div>
-<div class="nav-more" id="nav-more"><button onclick="openVerifyMenu()">✅ Verificar</button><button onclick="openWindowManager()">🪟 Ventanas</button><button onclick="openHub()">🌌 Hub</button><button onclick="openMonitor()">📡 Monitor</button><button onclick="openQRModal()">💠 QR Pay</button><button onclick="openAuthDrop(event)">🔑 Conectar</button><button onclick="openOwner()">🛠️ Estudio</button></div>
+<div class="nav-r"><span class="online-pill"><span class="w-2 h-2 rounded-full bg-green-400" style="animation:tw 2s infinite"></span>ONLINE</span><button class="bg2 nr-ico" onclick="openVerifyMenu()" title="Verificar">✅</button><button class="bg2 nr-ico" onclick="openWindowManager()" title="Ventanas">🪟<span class="win-badge" id="win-badge">0</span></button><button class="bg2 nr-ico" onclick="openMonitor()" title="Monitor">📡</button><button class="bg2 nr-ico" onclick="openQRModal()" title="QR Pay">💠</button><button class="bg2" id="nav-more-btn" aria-label="Mas">☰</button></div>
+<div class="nav-more" id="nav-more"><button data-nr="verify" onclick="openVerifyMenu()">✅ Verificar</button><button data-nr="win" onclick="openWindowManager()">🪟 Ventanas</button><button data-nr="mon" onclick="openMonitor()">📡 Monitor</button><button data-nr="qr" onclick="openQRModal()">💠 QR Pay</button><button data-nr="hub" onclick="openHub()">🌌 Hub</button><button data-nr="auth" onclick="openAuthDrop(event)">🔑 Conectar</button><button data-nr="owner" onclick="openOwner()">🛠️ Estudio</button></div>
 </div></nav>
 <div class="ctb" id="crypto-bar"><div class="ctc"><div class="cti" data-price="icp"><div class="ci icp">∞</div><span class="cv" id="icp-price">…</span></div><div class="cti" data-price="btc"><div class="ci btc">₿</div><span class="cv" id="btc-price">…</span></div><div class="cti" data-price="sats"><div class="ci sats">s</div><span class="cv" id="sats-price">…</span></div><div class="cti" data-price="cycles"><div class="ci cyc">⚡</div><span class="cv" id="cycles-price">…</span></div></div></div>
-<div class="mol" id="mol" style="margin-top:42px"><div class="cc"><div class="gp rounded-2xl p-3 flex-none lah lh" id="game-launcher-wrapper"><button class="lco" onclick="hideLauncher()">▲</button><div class="glc" id="game-launcher"></div></div><div class="wg" id="window-grid"></div></div></div>
+<div class="mol" id="mol" style="margin-top:42px"><div class="cc"><div class="wg" id="window-grid"></div></div></div>
 </div>
-<button class="lo" id="launcher-orb" title="Juegos"><span class="em">🎮</span></button>
+<button class="lo" id="launcher-orb" title="Juegos" onclick="toggleArcade()"><span class="em">🎮</span></button>
 <div class="hm" id="hub-modal" onclick="if(event.target===this)closeHub()"><div class="hc"><div class="hh"><h2 class="font-black bt">AETHERIA HUB</h2><button onclick="closeHub()" style="background:none;border:none;color:#fff;cursor:pointer;font-size:20px">✕</button></div><div class="hb"><div class="hp2 hpl"><h3 class="font-display font-bold mb-4" style="color:var(--p)">Social y Comunidad</h3><div id="hub-left-list"></div></div><div class="hp2 hpr"><h3 class="font-display font-bold mb-4 text-right" style="color:var(--s)">DeFi y Utilidades</h3><div id="hub-right-list"></div></div></div></div></div>
 <div class="qm" id="qr-modal" onclick="if(event.target===this)closeQRModal()"><div class="qc"><h3 class="font-black bt mb-4">💠 Crypto QR Pay</h3><p style="color:var(--inks)">Proximamente: paga con los tokens que ganas en AETHERIA.</p></div></div>
 <div class="wm" id="window-manager" onclick="if(event.target===this)closeWindowManager()"><div class="gp rounded-3xl p-8 max-w-5xl w-full max-h-[85vh] overflow-y-auto"><div class="flex justify-between items-center mb-8"><h2 class="text-3xl font-black bt">Gestor de Ventanas</h2><button onclick="closeWindowManager()" style="background:none;border:none;color:#fff;cursor:pointer;font-size:24px">✕</button></div><div class="wmg" id="window-manager-grid"></div></div></div>
 <div class="chron" id="chron-panel"><div class="chron-h"><span>📜 Cronicas de Gaia</span><button class="dx" onclick="toggleChron()" style="width:24px;height:24px">✕</button></div><div class="chron-l" id="chron-list"></div></div>
 <div class="auth-drop" id="auth-dropdown"><button onclick="bioGuard(function(){toastOS('🔗 WalletConnect (demo)')})">🔗 WalletConnect</button><button onclick="bioGuard(function(){toastOS('🆔 NFID (demo)')})">🆔 NFID</button><button onclick="bioGuard(function(){toastOS('🛡️ NNS (demo)')})">🛡️ NNS</button></div>
 <div class="bio-gate" id="bio-gate" style="display:none"></div>
+<div id="arcade"><div class="arc-h"><span>ARCADE</span><button class="arc-x" onclick="closeArcade()" aria-label="Cerrar">✕</button></div><div class="arc-grid" id="arcade-grid"></div></div>
 <div class="uit" onclick="showUI()"></div>
-<div id="mobile-dock" class="mdk gp flex justify-around items-center gap-2"><button onclick="openHub()" class="flex flex-col items-center gap-1 p-3 flex-1 rounded-xl"><span class="text-2xl">🌌</span><span class="text-xs font-bold text-gray-300">Hub</span></button><button onclick="openWindowManager()" class="flex flex-col items-center gap-1 p-3 flex-1 rounded-xl"><span class="text-2xl">🪟</span><span class="text-xs font-bold text-gray-300">Ventanas</span></button><button onclick="openMonitor()" class="flex flex-col items-center gap-1 p-3 flex-1 rounded-xl"><span class="text-2xl">📡</span><span class="text-xs font-bold text-gray-300">Monitor</span></button><button onclick="toggleLauncher()" class="flex flex-col items-center gap-1 p-3 flex-1 rounded-xl"><span class="text-2xl">🎮</span><span class="text-xs font-bold text-gray-300">Juegos</span></button></div>
+<div id="mobile-dock" class="mdk gp flex justify-around items-center gap-2"><button onclick="openHub()" class="flex flex-col items-center gap-1 p-3 flex-1 rounded-xl"><span class="text-2xl">🌌</span><span class="text-xs font-bold text-gray-300">Hub</span></button><button onclick="openWindowManager()" class="flex flex-col items-center gap-1 p-3 flex-1 rounded-xl"><span class="text-2xl">🪟</span><span class="text-xs font-bold text-gray-300">Ventanas</span></button><button onclick="openMonitor()" class="flex flex-col items-center gap-1 p-3 flex-1 rounded-xl"><span class="text-2xl">📡</span><span class="text-xs font-bold text-gray-300">Monitor</span></button><button onclick="toggleArcade()" class="flex flex-col items-center gap-1 p-3 flex-1 rounded-xl"><span class="text-2xl">🎮</span><span class="text-xs font-bold text-gray-300">Juegos</span></button></div>
 <script type="text/html" id="piverse-tpl">
 <div class="ph" id="pv-root">
 <canvas class="pc" id="pv-canvas"></canvas>
@@ -293,7 +309,7 @@ body.dock-sleep .cc{padding-bottom:.5rem}
 <div class="pto" id="pv-toast"></div>
 <div class="pjy" id="pv-joy"><div class="psk" id="pv-stick"></div></div>
 <div class="pmb2 pma" id="pv-mact">ACCION</div><div class="pmb2 pmt" id="pv-matk">ATACAR</div><div class="pmb2 pmm2" id="pv-mmount">MONTAR</div>
-<div class="pin" id="pv-intro"><h1>AETHERIA</h1><p id="pv-intro-desc">Un metaverso vivo guiado por Gaia. Compra tierras, amueblalas, cobralas. Toca el sello 3 veces. 👁️</p><button class="pbtn pel2" id="pv-enter">🔒 PROXIMAMENTE 🚀</button><div class="pth" id="pv-taphint">toca el sello... 👁️</div><p style="margin-top:14px;font-size:11px;color:#7f8db0">WASD · E · Espacio · Shift · T · F · M · Q</p></div>
+<div class="pin" id="pv-intro"><h1>AETHERIA</h1><p id="pv-intro-desc">Un metaverso vivo guiado por Gaia. Compra tierras, amueblalas, cobralas. Toca el sello 5 veces (modo dev). 👁️</p><button class="pbtn pel2" id="pv-enter">🔒 PROXIMAMENTE 🚀</button><div class="pth" id="pv-taphint">toca el sello... 👁️</div><p style="margin-top:14px;font-size:11px;color:#7f8db0">WASD · E · Espacio · Shift · T · F · M · Q</p></div>
 </div>
 </script>
 <script src="piverse-engine.js"></script>
@@ -302,7 +318,9 @@ body.dock-sleep .cc{padding-bottom:.5rem}
 <!-- ============ PARTE-2-INI ============ -->
 <script>
 /* fallback por si el motor (parte 4) aun no esta: el OS no peta */
-if(!window.ICME_HOOKS)window.ICME_HOOKS={log:function(){},demandOf:function(){return 0},buyPrice:function(k,b){return b},canBuy:function(){return{ok:true,msg:''}},onBuy:function(){},furnBonus:function(){return{rent:0,care:0,city:0,flora:0,garage:0}},cityLevel:function(){return 1},cityDiscount:function(){return 0},addTax:function(){},parcelHTML:function(){return ''},furn:function(){}};
+window.__LOG=window.__LOG||[];
+function logChron(m){window.__LOG.unshift({t:Date.now(),m:m});if(window.__LOG.length>60)window.__LOG.length=60;if(typeof renderChron==='function')renderChron();}
+if(!window.ICME_HOOKS)window.ICME_HOOKS={log:logChron,demandOf:function(){return 0},buyPrice:function(k,b){return b},canBuy:function(){return{ok:true,msg:''}},onBuy:function(){},furnBonus:function(){return{rent:0,care:0,city:0,flora:0,garage:0}},cityLevel:function(){return 1},cityDiscount:function(){return 0},addTax:function(){},parcelHTML:function(){return ''},furn:function(){}};
 
 /* ---------- temas ---------- */
 var THEME_ORDER=['rainbow','thirdeye','codex'],THEME_NAMES={rainbow:'🌀 Singularidad',thirdeye:'👁️ Tercer Ojo',codex:'⚙️ Códice'};
@@ -312,7 +330,7 @@ function toastOS(m){var t=document.getElementById('os-toast');if(!t){t=document.
 
 /* ---------- layout ---------- */
 function isPortrait(){return innerHeight>innerWidth;}
-function clampFloatingBtns(){['ai-robot-btn','radio-toggle-btn','social-orb','defi-orb','chron-orb'].forEach(function(id){var el=document.getElementById(id);if(!el||!el.style.top)return;var t=parseInt(el.style.top,10);var mx=innerHeight-el.offsetHeight-10;if(t>mx||t<0)el.style.top=Math.max(110,Math.min(t,mx))+'px';});}
+function clampFloatingBtns(){['ai-robot-btn','radio-toggle-btn','chron-orb'].forEach(function(id){var el=document.getElementById(id);if(!el||!el.style.top)return;var t=parseInt(el.style.top,10);var mx=innerHeight-el.offsetHeight-10;if(t>mx||t<0)el.style.top=Math.max(110,Math.min(t,mx))+'px';});}
 function anchorPanelToBtn(p,b){if(!p||!b)return;var vw=innerWidth,vh=innerHeight,M=12;if(vw<768){p.style.left=M+'px';p.style.right=M+'px';p.style.width='auto';p.style.bottom='84px';p.style.top='auto';p.style.maxHeight='calc(100vh - 110px)';return;}var r=b.getBoundingClientRect();var tl=112;var pw=Math.min(340,vw-2*M);var left=(r.left+r.width/2>vw/2)?(r.left-pw-12):(r.right+12);left=Math.max(M,Math.min(left,vw-pw-M));var sa=r.top-tl-12,sb=vh-r.bottom-12;var ph=Math.min(460,Math.max(240,Math.max(sa,sb)));var top=(sa>=sb)?(r.top-12-ph):(r.bottom+12);top=Math.max(tl,Math.min(top,vh-ph-8));p.style.width=pw+'px';p.style.left=left+'px';p.style.top=top+'px';p.style.right='auto';p.style.bottom='auto';p.style.maxHeight=ph+'px';}
 
 /* ---------- orbes: arrastrar o clicar (umbral 6px) ---------- */
@@ -325,14 +343,14 @@ function makeDraggableWithClick(id,click,onMove){var el=document.getElementById(
  el.addEventListener('touchstart',dH,{passive:true});el.addEventListener('touchmove',mH,{passive:false});el.addEventListener('touchend',function(){lastTouchEnd=Date.now();uH();});
  try{var sv=localStorage.getItem(id+'_pos');if(sv){var a=sv.split('|');el.style.left=a[0];el.style.top=a[1];el.style.right='auto';el.style.bottom='auto';}}catch(_){}}
 
-/* ---------- nav: menu ☰ ---------- */
+/* ---------- nav: menu conectar ---------- */
 function openAuthDrop(e){if(e)e.stopPropagation();var a=document.getElementById('auth-dropdown');if(a)a.classList.toggle('on');var nm=document.getElementById('nav-more');if(nm)nm.classList.remove('on');}
 
 /* ---------- ventanas ---------- */
 var windows=[],wid=0;function maxW(){return innerWidth<1024?2:4;}
 function layoutClass(){var v=windows.filter(function(w){return !w.min;});if(windows.some(function(w){return w.excl;}))return 'wg ls1';var n=v.length;if(isPortrait()&&innerWidth<1024)return n<=1?'wg ps1':'wg pm';return n<=1?'wg ls1':n===2?'wg lt':'wg lm';}
 function buildWin(w,a){var ext=w.isInternal?'':'<button class="we" data-ext="'+w.url+'">↗ Abrir</button>';var body=w.isInternal?'<div class="wco" data-piverse="1"></div>':(w.noframe?'<div class="wco"><div class="nfs"><div class="nfo">'+w.icon+'</div><div class="nft">'+w.title+'</div><button class="nfo2" data-ext="'+w.url+'">↗ Abrir '+w.title+'</button></div></div>':'<div class="wco"><iframe src="'+w.url+'"></iframe></div>');return '<div class="wc '+(a?'active':'')+'" id="window-'+w.id+'" data-wid="'+w.id+'"><div class="whd" data-hdr="'+w.id+'"><div class="flex items-center gap-2"><div class="wct"><button class="wb cl" data-close="'+w.id+'"></button><button class="wb mi" data-min="'+w.id+'"></button><button class="wb ma" data-max="'+w.id+'"></button></div><span class="wico">'+w.icon+'</span><span class="wtitle">'+w.title+'</span></div>'+ext+'</div>'+body+'</div>';}
-function mountPiVerse(node){var host=node.querySelector('[data-piverse="1"]');if(!host||host.dataset.mounted)return;host.dataset.mounted='1';var tpl=document.getElementById('piverse-tpl');if(tpl)host.innerHTML=tpl.textContent||tpl.innerHTML;if(typeof window.initPiVerse==='function'){try{window.initPiVerse(host);}catch(e){host.innerHTML='<div class="pv-pend"><div class="ring"></div><h2>AETHERIA</h2><p style="color:#ff7a8a">El motor dio un error: '+(e&&e.message?e.message:e)+'</p></div>';}}else{host.innerHTML='<div class="pv-pend"><div class="ring"></div><h2>AETHERIA</h2><div class="step">PASO 1 DE 2 LISTO ✓</div><p>El sistema operativo ya esta sano. El motor del mundo vive en <b>piverse-engine.js</b>. Cuando lo subas a GitHub, el sello de 3 toques despertara y el mapa respirara. 🌌</p></div>';}}
+function mountPiVerse(node){var host=node.querySelector('[data-piverse="1"]');if(!host||host.dataset.mounted)return;host.dataset.mounted='1';var tpl=document.getElementById('piverse-tpl');if(tpl)host.innerHTML=tpl.textContent||tpl.innerHTML;if(typeof window.initPiVerse==='function'){try{window.initPiVerse(host);}catch(e){host.innerHTML='<div class="pv-pend"><div class="ring"></div><h2>AETHERIA</h2><p style="color:#ff7a8a">El motor dio un error: '+(e&&e.message?e.message:e)+'</p></div>';}}else{host.innerHTML='<div class="pv-pend"><div class="ring"></div><h2>AETHERIA</h2><div class="step">PASO 1 DE 2 LISTO ✓</div><p>El sistema operativo ya esta sano. El motor del mundo vive en <b>piverse-engine.js</b>. Cuando lo subas a GitHub, el sello de 5 toques despertara y el mapa respirara. 🌌</p></div>';}}
 function finishClose(id){windows=windows.filter(function(x){return x.id!==id;});var g=document.getElementById('window-grid');g.className=layoutClass();var v=windows.filter(function(x){return !x.min;});if(v.length){var f=document.getElementById('window-'+v[0].id);if(f)f.classList.add('active');}updateBadge();}
 function addWindow(app){if(app.isInternal&&app.url==='piverse'){var ex=windows.filter(function(w){return w.isInternal;});if(ex.length){if(ex[0].min)restoreWin(ex[0].id);else focusWin(ex[0].id);return;}}var v=windows.filter(function(w){return !w.min;});if(v.length>=maxW()){toastOS('Maximo '+maxW()+' ventanas. Minimiza una.');return;}var w={id:wid++,title:app.name,url:app.url,icon:app.icon,isInternal:!!app.isInternal,noframe:!!app.noframe,min:false,excl:false};windows.forEach(function(x){x.excl=false;});windows.push(w);var g=document.getElementById('window-grid');g.insertAdjacentHTML('beforeend',buildWin(w,true));g.className=layoutClass();var node=document.getElementById('window-'+w.id);if(w.isInternal)mountPiVerse(node);closeWindowManager();closeHub();updateBadge();}
 function closeWindow(id){var node=document.getElementById('window-'+id);var w=windows.find(function(x){return x.id===id;});if(w&&w.isInternal&&window.PV){try{window.PV.destroy();}catch(_){}}if(node){node.style.transition='transform .4s,opacity .4s';node.style.opacity='0';node.style.transform='scale(.6)';setTimeout(function(){node.remove();finishClose(id);},400);}else finishClose(id);}
@@ -356,23 +374,19 @@ function openHubApp(i,s){addWindow((s?rightApps:leftApps)[i]);closeHub();}
 function openVerifyMenu(){toastOS('✅ Verificacion: biometria WebAuthn + PIN + DecideAI (demo)');}
 function openOwner(){toastOS('🛠️ Estudio: mapa de ventas, valor de ciudades, cosmeticos de temporada');}
 
-/* ---------- hub ---------- */
+/* ---------- catalogo + hub + arcade ---------- */
 var games=[{name:"The Cubetopia",url:"https://www.thecubetopia.com",icon:"🏰"},{name:"Oncyber Beauty",url:"https://oncyber.io/beautycollecion1",icon:"🎨"},{name:"Trippy",url:"https://trippy.icp.xyz/",icon:"🌀"},{name:"ICP Alpha",url:"https://dfz3l-kiaaa-aaaah-aaeda-cai.raw.ic0.app/",icon:"👾"},{name:"ICP Beta",url:"https://2n2qt-5aaaa-aaaak-aebiq-cai.raw.ic0.app/",icon:"🚀"},{name:"LightNite",url:"https://www.lightnite.io/",icon:"🔫"},{name:"Hextris",url:"https://hextris.io/",icon:"🧩"},{name:"ICP Gamma",url:"https://uoznz-naaaa-aaaab-qea7q-cai.icp0.io/",icon:"⚔️"},{name:"AETHERIA",url:"piverse",icon:"🌌",isInternal:true,live:true}];
 var leftApps=[{name:"YouTube",url:"https://www.youtube.com/",icon:"🔴",noframe:true},{name:"X",url:"https://x.com/",icon:"⚫",noframe:true},{name:"OpenChat",url:"https://oc.app/communities",icon:"💬"},{name:"Distrikt",url:"https://az5sd-cqaaa-aaaae-aaarq-cai.ic0.app/",icon:"🟣"}];
 var rightApps=[{name:"NNS",url:"https://nns.ic0.app/",icon:"🛡️",noframe:true},{name:"OISY",url:"https://oisy.com/",icon:"🟦",noframe:true},{name:"ICPSwap",url:"https://app.icpswap.com/",icon:"🔄",noframe:true},{name:"Rumi",url:"https://app.rumiprotocol.com/",icon:"💎",noframe:true}];
 function renderHub(){var ll=document.getElementById('hub-left-list'),rl=document.getElementById('hub-right-list');if(ll)ll.innerHTML=leftApps.map(function(a,i){return '<div class="hab" onclick="openHubApp('+i+',0)"><div class="hai">'+a.icon+'</div><div><p class="font-bold">'+a.name+'</p></div></div>';}).join('');if(rl)rl.innerHTML=rightApps.map(function(a,i){return '<div class="hab" onclick="openHubApp('+i+',1)"><div class="hai">'+a.icon+'</div><div class="text-right"><p class="font-bold">'+a.name+'</p></div></div>';}).join('');}
-function renderLauncher(){var gl=document.getElementById('game-launcher');if(gl)gl.innerHTML=games.map(function(g,i){return '<button class="gc rounded-2xl p-4 flex flex-col items-center gap-2'+(g.live?' live':'')+'" onclick="addWindow(games['+i+'])"><div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl border-2 border-white/20">'+g.icon+'</div><span class="gn text-xs font-bold">'+g.name+'</span></button>';}).join('');}
-
-/* ---------- launcher ---------- */
-var launcherVisible=true,launcherUser=false;
-function syncOrb(){var o=document.getElementById('launcher-orb');if(o)o.classList.toggle('visible',!launcherVisible);}
-function hideLauncher(){launcherVisible=false;var w=document.getElementById('game-launcher-wrapper');if(w)w.classList.add('lh');syncOrb();}
-function showLauncher(){launcherVisible=true;var w=document.getElementById('game-launcher-wrapper');if(w)w.classList.remove('lh');syncOrb();}
-function toggleLauncher(){launcherUser=true;launcherVisible?hideLauncher():showLauncher();}
+function fillArcade(){var g=document.getElementById('arcade-grid');if(!g)return;g.innerHTML=games.map(function(gm,i){return '<div class="arc-item'+(gm.live?' live':'')+'" data-gi="'+i+'"><div class="arc-disc">'+gm.icon+'</div><div class="arc-name">'+gm.name+'</div></div>';}).join('');g.querySelectorAll('.arc-item').forEach(function(it){it.addEventListener('click',function(){var i=+it.getAttribute('data-gi');addWindow(games[i]);closeArcade();});});}
+function openArcade(){fillArcade();var a=document.getElementById('arcade');if(a)a.classList.add('on');}
+function closeArcade(){var a=document.getElementById('arcade');if(a)a.classList.remove('on');}
+function toggleArcade(){var a=document.getElementById('arcade');if(!a)return;a.classList.contains('on')?closeArcade():openArcade();}
 
 /* ---------- cronicas ---------- */
 var chronOpen=false;
-function toggleChron(){chronOpen=!chronOpen;document.getElementById('chron-panel').classList.toggle('on',chronOpen);document.getElementById('chron-orb').classList.toggle('io',chronOpen);if(chronOpen&&window.ICME_HOOKS)renderChron();}
+function toggleChron(){chronOpen=!chronOpen;document.getElementById('chron-panel').classList.toggle('on',chronOpen);document.getElementById('chron-orb').classList.toggle('io',chronOpen);if(chronOpen)renderChron();}
 function renderChron(){var L=window.__LOG||[];var l=document.getElementById('chron-list');if(!l)return;l.innerHTML=L.length?L.map(function(e){var d=new Date(e.t);return '<div class="chron-i"><b>'+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+'</b> · '+e.m+'</div>';}).join(''):'<div class="chron-i">Aun no hay cronicas. Juega y Gaia narrara lo que pase.</div>';}
 
 /* ---------- bio (demo) ---------- */
@@ -401,7 +415,7 @@ function paintP(k,v){var el=document.getElementById(k+'-price');if(!el)return;el
 function fetchReal(k,ids,calc,att){att=att||0;fetch('https://api.coingecko.com/api/v3/simple/price?ids='+ids+'&vs_currencies=usd').then(function(r){return r.json();}).then(function(d){var o=ids==='bitcoin'?d.bitcoin:d['internet-computer'];if(o&&typeof o.usd==='number'){priceBase[k]=calc(o.usd);paintP(k,priceBase[k]);}}).catch(function(){if(att<2)setTimeout(function(){fetchReal(k,ids,calc,att+1);},1500);});}
 function fetchAll(){fetchReal('icp','internet-computer',function(x){return x;});fetchReal('btc','bitcoin',function(x){return x;});fetchReal('sats','bitcoin',function(x){return x/1e8;});fetchReal('cycles','internet-computer',function(x){return x/1e9;});}
 
-/* ---------- auto-ocultado UI movil ---------- */
+/* ---------- auto-ocultado UI movil (respeta dock plegado) ---------- */
 var uiVisible=true,hideT;
 function showUI(){var d=document.getElementById('mobile-dock');if(d)d.classList.remove('hu');uiVisible=true;clearTimeout(hideT);hideT=setTimeout(function(){if(innerWidth<1024&&!document.body.classList.contains('dock-sleep')){var d=document.getElementById('mobile-dock');if(d)d.classList.add('hu');uiVisible=false;}},4000);}
 function hideUI(){if(document.body.classList.contains('dock-sleep'))return;if(innerWidth<1024){var d=document.getElementById('mobile-dock');if(d)d.classList.add('hu');uiVisible=false;}}
@@ -421,7 +435,14 @@ function hideUI(){if(document.body.classList.contains('dock-sleep'))return;if(in
  (function(el,cb){var y0=null;el.addEventListener('touchstart',function(e){y0=(e.touches&&e.touches[0])?e.touches[0].clientY:null;},{passive:true});el.addEventListener('touchend',function(e){if(y0===null)return;var t=(e.changedTouches&&e.changedTouches[0])?e.changedTouches[0].clientY:y0;var dy=t-y0;y0=null;if(dy<-30&&cb)cb();},{passive:true});})(pill,expand);
  if(readP()==='collapsed'){dock.style.transition='none';pill.style.transition='none';collapse();requestAnimationFrame(function(){requestAnimationFrame(function(){dock.style.transition='';pill.style.transition='';});});}
 })();
-/* ============ PARTE-2-FIN ============ -->
+
+/* ---------- cierre del arcade al tocar fuera ---------- */
+document.addEventListener('click',function(e){var a=document.getElementById('arcade');if(!a||!a.classList.contains('on'))return;if(e.target.closest('#arcade')||e.target.closest('#launcher-orb')||e.target.closest('#mobile-dock'))return;closeArcade();});
+
+/* rellenar arcade una vez ya existe el DOM */
+try{fillArcade();}catch(e){}
+</script>
+<!-- PARTE-2-FIN -->
 
 <!-- ============ PARTE-3-INI ============ -->
 <script>
@@ -429,20 +450,13 @@ function hideUI(){if(document.body.classList.contains('dock-sleep'))return;if(in
 function createRainbowBackground(){var c=document.getElementById('stars-container'),s=document.getElementById('shooting-stars');if(!c)return;for(var i=0;i<150;i++){var st=document.createElement('div');st.className=Math.random()>0.86?'star rw':'star';var sz=Math.random()*2.6+1;st.style.width=sz+'px';st.style.height=sz+'px';st.style.left=Math.random()*100+'%';st.style.top=Math.random()*100+'%';st.style.animationDelay=(Math.random()*3)+'s';st.style.opacity=(Math.random()*0.7+0.2).toFixed(2);c.appendChild(st);}if(!s)return;for(var j=0;j<6;j++){var sh=document.createElement('div');sh.className='shs';sh.style.top=(Math.random()*100)+'%';sh.style.animationDelay=(Math.random()*5+j*1.5)+'s';s.appendChild(sh);}}
 function buildBootStars(){var c=document.getElementById('boot-stars');if(!c)return;for(var i=0;i<90;i++){var s=document.createElement('i');s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDelay=(Math.random()*3)+'s';var sz=Math.random()*2+1;s.style.width=sz+'px';s.style.height=sz+'px';c.appendChild(s);}}
 
-/* ---------- cronicas: tubería única OS <-> motor ---------- */
-window.__LOG=window.__LOG||[];
-function logChron(m){window.__LOG.unshift({t:Date.now(),m:m});if(window.__LOG.length>60)window.__LOG.length=60;if(typeof renderChron==='function')renderChron();}
-
 /* ---------- arranque del OS (cada bloque blindado) ---------- */
 try{ changeTheme((function(){try{return localStorage.getItem('aetheria-theme');}catch(_){return null;}})()||'rainbow'); }catch(e){}
 try{ Object.keys(priceBase).forEach(function(k){paintP(k,priceBase[k]);}); fetchAll(); setInterval(fetchAll,30000); }catch(e){}
 try{ createRainbowBackground(); buildBootStars(); }catch(e){}
 try{ makeDraggableWithClick('ai-robot-btn',toggleAI,function(){if(aiPanelOpen)anchorPanelToBtn(document.getElementById('ai-panel'),document.getElementById('ai-robot-btn'));}); }catch(e){}
 try{ makeDraggableWithClick('radio-toggle-btn',toggleRadioWidget,function(){if(radioWidgetOpen)anchorPanelToBtn(document.getElementById('radio-widget'),document.getElementById('radio-toggle-btn'));}); }catch(e){}
-try{ makeDraggableWithClick('social-orb',function(){toastOS('💬 Social: OpenChat, Distrikt, DSCVR');},null); }catch(e){}
-try{ makeDraggableWithClick('defi-orb',function(){toastOS('💎 DeFi: ICPSwap, Rumi, OISY');},null); }catch(e){}
 try{ makeDraggableWithClick('chron-orb',toggleChron,function(){if(chronOpen)anchorPanelToBtn(document.getElementById('chron-panel'),document.getElementById('chron-orb'));}); }catch(e){}
-try{ makeDraggableWithClick('launcher-orb',toggleLauncher,null); }catch(e){}
 try{ clampFloatingBtns(); }catch(e){}
 try{
   var nmb=document.getElementById('nav-more-btn'),nm=document.getElementById('nav-more'),ad=document.getElementById('auth-dropdown');
@@ -463,7 +477,6 @@ try{
       var ex=e.target.closest('[data-ext]');if(ex){window.open(ex.getAttribute('data-ext'),'_blank','noopener');return;}
       var wc=e.target.closest('.wc');if(wc)focusWin(+wc.getAttribute('data-wid'));
     });
-    /* arrastrar la barra: arriba cierra, abajo minimiza */
     var sw=null;
     wg.addEventListener('pointerdown',function(e){var hdr=e.target.closest('.whd');if(!hdr||e.target.closest('.wb')||e.target.closest('.we'))return;var wc=hdr.closest('.wc');if(!wc)return;sw={id:+wc.getAttribute('data-wid'),y0:e.clientY,wc:wc};try{hdr.setPointerCapture(e.pointerId);}catch(_){}});
     wg.addEventListener('pointermove',function(e){if(!sw)return;var dy=e.clientY-sw.y0;sw.wc.style.transform='translateY('+(dy*0.35)+'px)';sw.wc.style.opacity=String(Math.max(0.3,1-Math.abs(dy)/240));});
@@ -482,14 +495,7 @@ try{
     if(e.key==='`'||e.key==='~'){e.preventDefault();openOwner();}
   });
 }catch(e){}
-try{ renderLauncher(); renderHub(); }catch(e){}
-try{
-  /* launcher: en movil vertical se ve; en escritorio se esconde (vive como orbe) */
-  if(isPortrait()&&innerWidth<1024){ showLauncher(); } else { hideLauncher(); }
-  var lo=document.getElementById('launcher-orb');if(lo)lo.classList.toggle('visible',!(isPortrait()&&innerWidth<1024)?!launcherVisible:false);
-  /* en escritorio el orbe de juegos manda; en movil lo oculta el CSS */
-  if(!(isPortrait()&&innerWidth<1024)){ var lo2=document.getElementById('launcher-orb'); if(lo2)lo2.classList.add('visible'); }
-}catch(e){}
+try{ renderHub(); fillArcade(); }catch(e){}
 try{ addEventListener('resize',function(){var g=document.getElementById('window-grid');if(g)g.className=layoutClass();clampFloatingBtns();}); addEventListener('orientationchange',function(){setTimeout(function(){var g=document.getElementById('window-grid');if(g)g.className=layoutClass();clampFloatingBtns();},300);}); }catch(e){}
 try{ showUI(); }catch(e){}
 try{ logChron('AETHERIA desperto. Sistema sano · esperando motor.'); }catch(e){}
