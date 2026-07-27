@@ -327,7 +327,6 @@ body.nav-sleep #main-nav{transform:translateY(-115%)}
 </div>
 </script>
 <!-- PARTE-1-FIN -->
-
 <!-- ============ PARTE-2-INI · MOTOR INCRUSTADO ============ -->
 <script>
 (function(){
@@ -601,7 +600,6 @@ function initPiVerse(host){
 window.initPiVerse = initPiVerse;
 </script>
 <!-- PARTE-2-FIN -->
-
 <!-- ============ PARTE-3-INI · CEREBRO DEL OS ============ -->
 <script>
 /* stub minimo por si el panel Estudio se abre antes de que el motor monte */
@@ -829,7 +827,6 @@ try{ if(typeof logChron==='function')logChron('AETHERIA desperto. Cerebro en lin
 try{ addEventListener('resize',function(){var g=document.getElementById('window-grid');if(g)g.className=layoutClass();clampFloatingBtns();syncLauncherOrb();applyNavLand();}); addEventListener('orientationchange',function(){setTimeout(function(){var g=document.getElementById('window-grid');if(g)g.className=layoutClass();clampFloatingBtns();syncLauncherOrb();applyNavLand();},300);}); }catch(e){}
 </script>
 <!-- PARTE-3-FIN -->
-
 <!-- ============ PARTE-4-INI · ARRANQUE + BOOT + CIERRE ============ -->
 <script>
 /* ---------- cielo vivo: nebulosas ambiente + estrellas en dos capas + fugaces ---------- */
@@ -873,6 +870,15 @@ try{ seedNebulae(); createRainbowBackground(); buildBootStars(); }catch(e){ cons
   var checks=document.querySelectorAll('#boot-checks .bck');
   checks.forEach(function(el,i){ setTimeout(function(){ el.classList.add('ok'); },600+i*420); });
 })();
+</script>
+<!-- AETHERIA · carga motor externo + orbe PC garantizado -->
+<style>
+@media(min-width:1025px){#launcher-orb{display:flex !important;visibility:visible !important;opacity:1 !important;pointer-events:auto !important}}
+@media(max-width:1024px) and (orientation:portrait){#launcher-orb{display:none !important}}
+</style>
+<script src="aetheria-engine.js"></script>
+<script>
+(function(){function f(){var lo=document.getElementById('launcher-orb');if(lo&&innerWidth>=1025){lo.style.display='flex';lo.style.visibility='visible';lo.style.opacity='1';}}f();addEventListener('resize',f);addEventListener('load',f);setTimeout(f,400);setTimeout(f,1500);if(!window.__AETHERIA_ENGINE_OK)setTimeout(function(){if(!window.__AETHERIA_ENGINE_OK)console.warn('[AETHERIA] el motor no cargo: sube aetheria-engine.js a la misma carpeta que index.html');},2500);})();
 </script>
 </body>
 </html>
